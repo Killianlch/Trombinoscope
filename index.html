@@ -1,0 +1,52 @@
+<html>
+<div id="test">
+
+</div>
+
+<script>
+    function load_students_via_api(students) {
+        console.log(students)
+        let d = document.createElement("div");
+        for (student of students) {
+            load_student(student);
+            d.innerHTML += student + " - ";
+
+        }
+        document.getElementById("test").appendChild(d);
+    }
+    function load_students() {
+        fetch('./etudiants.json')
+            .then(data => data.json())
+            .then(
+                results => load_students_via_api(results.students)
+            )
+    }
+    load_students()
+
+    function load_student(name) {
+        fetch('https://api.github.com/users/' + name, {
+            headers: new Headers({ "Authorization": "Bearer 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" })
+        }
+        )
+            .then(data => data.json())
+            .then(response => console.log(" ID : " + response.login + ", Avatar : " + response.avatar_url + ", Nombre de repository : " + response.public_repos + ", Nombre de followers : " + response.followers))
+
+    }
+
+
+    /*  function load_url_students(students) {
+        let link = document.createElement("a");
+        let d = document.createElement("div");
+
+        for (student of students) {
+            fetch("https://api.github.com/users/" + student, {
+                headers: new Headers({ "Authorization": "Bearer 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" })
+            })
+                .then(data => data.json())
+                .then(response => console.log(response.login + " " + response.avatar_url))
+            link.href = response.avatar_url;
+        } */
+
+</script>
+
+</html>
