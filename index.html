@@ -6,7 +6,6 @@
 
 <script>
     function load_students_via_api(students) {
-        console.log(students)
         let d = document.createElement("div");
         for (student of students) {
             load_student(student);
@@ -23,7 +22,7 @@
     }
     function load_student(name) {
         fetch('https://api.github.com/users/' + name, {
-            headers: new Headers({ "Authorization": "Bearer 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" })
+            headers: new Headers({ "Authorization": "Bearer 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" })
         }
         )
 
@@ -43,8 +42,9 @@
         let rps = document.createElement("p");
         rps.innerHTML = "Nombre de repository : " + response.public_repos;
 
-        let flw = document.createElement("p");
+        let flw = document.createElement("a");
         flw.innerHTML = "Nombre de Followers : " + response.followers;
+        flw.href = response.followers_url;
 
         let div = document.createElement("div");
         div.appendChild(title)
