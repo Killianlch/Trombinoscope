@@ -1,4 +1,5 @@
 <html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div id="test">
 
 </div>
@@ -20,11 +21,9 @@
                 results => load_students_via_api(results.students)
             )
     }
-    load_students()
-
     function load_student(name) {
         fetch('https://api.github.com/users/' + name, {
-            headers: new Headers({ "Authorization": "Bearer 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" })
+            headers: new Headers({ "Authorization": "Bearer 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" })
         }
         )
 
@@ -42,7 +41,7 @@
         title.innerHTML = response.login;
 
         let rps = document.createElement("p");
-        rps.innerHTML = "Nombre de Repository : " + response.public_repos;
+        rps.innerHTML = "Nombre de repository : " + response.public_repos;
 
         let flw = document.createElement("p");
         flw.innerHTML = "Nombre de Followers : " + response.followers;
@@ -54,7 +53,9 @@
         div.appendChild(flw)
         node.appendChild(div);
     }
-
+    $(document).ready(() => {
+        load_students()
+    });
 
 </script>
 
